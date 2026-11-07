@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incident Ticket Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Incident Ticket Tracker</h1>
+    <p class="note">Practice service desk tool. Tickets are saved only in your browser.</p>
+  </header>
+
+  <main>
+    <section class="stats">
+      <div class="stat"><span id="statOpen">0</span><label>Open</label></div>
+      <div class="stat p1"><span id="statP1">0</span><label>Active P1</label></div>
+      <div class="stat p2"><span id="statP2">0</span><label>Active P2</label></div>
+      <div class="stat resolved"><span id="statResolved">0</span><label>Resolved</label></div>
+    </section>
+
+    <div class="layout">
+      <section class="panel">
+        <h2>Create Incident</h2>
+        <form id="ticketForm">
+          <label>Title <input type="text" id="title" required maxlength="80" placeholder="e.g. Branch router not reachable"></label>
+          <label>Category
+            <select id="category">
+              <option>Network</option><option>Voice</option><option>Video</option><option>Optical</option><option>Application</option>
+            </select>
+          </label>
+          <label>Severity
+            <select id="severity">
+              <option value="P1">P1 - Critical</option>
+              <option value="P2">P2 - High</option>
+              <option value="P3" selected>P3 - Medium</option>
+              <option value="P4">P4 - Low</option>
+            </select>
+          </label>
+          <label>Affected service <input type="text" id="service" required maxlength="60" placeholder="e.g. Office WAN link"></label>
+          <label>Reported by <input type="text" id="reporter" required maxlength="40" placeholder="e.g. Service desk"></label>
+          <label>Description <textarea id="description" rows="3" required placeholder="What is happening and since when?"></textarea></label>
+          <button type="submit" class="primary">Create Ticket</button>
+        </form>
+        <div class="sample-buttons">
+          <button id="sampleBtn">Load sample tickets</button>
+          <button id="clearBtn" class="danger">Clear all</button>
+        </div>
+        <p class="note-dark">SLA times are sample values: P1 respond 15 min / resolve 4 h, P2 30 min / 8 h, P3 4 h / 24 h, P4 8 h / 72 h.</p>
+      </section>
+
+      <section class="panel wide">
+        <h2>Tickets</h2>
+        <div class="filters">
+          <input type="text" id="search" placeholder="Search by ID or title">
+          <select id="statusFilter">
+            <option value="All">All status</option>
+            <option>Open</option><option>Acknowledged</option><option>Investigating</option><option>Escalated</option><option>Resolved</option>
+          </select>
+          <select id="sevFilter">
+            <option value="All">All severity</option>
+            <option>P1</option><option>P2</option><option>P3</option><option>P4</option>
+          </select>
+        </div>
+        <div id="ticketList"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
